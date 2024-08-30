@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
 # ***************************************************
 # * File        : lp_pyomo.py
 # * Author      : Zhefeng Wang
@@ -12,13 +11,8 @@
 # * Requirement : 相关模块版本需求(例如: numpy >= 2.1.0)
 # ***************************************************
 
-
 # python libraries
-import os
-import sys
-
 from pyomo.environ import *
-
 
 # global variable
 LOGGING_LABEL = __file__.split('/')[-1][:-3]
@@ -64,9 +58,6 @@ print("\nConstraints:")
 print(f"Demand = {model.demand()}")
 print(f"Labor A = {model.laborA()}")
 print(f"Labor B = {model.laborB()}")
-
-
-
 
 
 

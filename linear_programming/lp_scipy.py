@@ -12,14 +12,9 @@
 # * Requirement : 相关模块版本需求(例如: numpy >= 2.1.0)
 # ***************************************************
 
-
 # python libraries
-import os
-import sys
-
-from scipy import optimize as op
 import numpy as np
-
+from scipy import optimize as op
 
 # global variable
 LOGGING_LABEL = __file__.split('/')[-1][:-3]

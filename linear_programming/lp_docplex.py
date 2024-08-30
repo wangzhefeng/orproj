@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
 # ***************************************************
 # * File        : lp1.py
 # * Author      : Zhefeng Wang
@@ -12,16 +11,13 @@
 # * Requirement : 相关模块版本需求(例如: numpy >= 2.1.0)
 # ***************************************************
 
-
 # python libraries
 import os
-import sys
 import json
 import random
 
 import pandas as pd
 import docplex.mp.model as cpx
-
 
 # global variable
 LOGGING_LABEL = __file__.split('/')[-1][:-3]
@@ -155,7 +151,6 @@ opt_df.drop(columns = ["variable_object"], inplace = True)
 solution_path = "./models/optimization_solution.csv"
 if not os.path.exists(solution_path):
     opt_df.to_csv(solution_path)
-
 
 
 
