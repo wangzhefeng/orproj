@@ -1,26 +1,26 @@
 # -*- coding: utf-8 -*-
 
-
 # ***************************************************
 # * File        : main.py
 # * Author      : Zhefeng Wang
 # * Email       : wangzhefengr@163.com
-# * Date        : 2023-04-13
-# * Version     : 0.1.041303
+# * Date        : 2024-09-16
+# * Version     : 0.1.091619
 # * Description : description
 # * Link        : link
 # * Requirement : 相关模块版本需求(例如: numpy >= 2.1.0)
 # ***************************************************
 
-
 # python libraries
 import os
 import sys
+ROOT = os.getcwd()
+if str(ROOT) not in sys.path:
+    sys.path.append(str(ROOT))
 
-import numpy as np
 import geatpy as ea
-from MyProblem import MyProblem
 
+from MyProblem import MyProblem
 
 # global variable
 LOGGING_LABEL = __file__.split('/')[-1][:-3]

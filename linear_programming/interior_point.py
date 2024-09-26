@@ -6,7 +6,7 @@
 # * Email       : wangzhefengr@163.com
 # * Date        : 2024-09-13
 # * Version     : 0.1.091320
-# * Description : 内点法
+# * Description : 线性规划内点法
 # * Link        : link
 # * Requirement : 相关模块版本需求(例如: numpy >= 2.1.0)
 # ***************************************************
@@ -18,6 +18,7 @@ ROOT = os.getcwd()
 if str(ROOT) not in sys.path:
     sys.path.append(str(ROOT))
 import time
+
 import numpy as np
 
 # global variable
