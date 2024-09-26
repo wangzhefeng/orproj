@@ -43,6 +43,8 @@ links, length = grb.multidict(edge)
 
 # 创建模型
 m = grb.Model()
+
+# 创建变量
 x = m.addVars(links, obj = length, name = "flow")
 
 # 添加约束
