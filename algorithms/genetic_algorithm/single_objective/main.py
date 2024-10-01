@@ -3,13 +3,16 @@
 # ***************************************************
 # * File        : main.py
 # * Author      : Zhefeng Wang
-# * Email       : wangzhefengr@163.com
-# * Date        : 2024-09-16
-# * Version     : 0.1.091619
+# * Email       : zfwang7@gmail.com
+# * Date        : 2024-10-01
+# * Version     : 1.0.100117
 # * Description : description
 # * Link        : link
 # * Requirement : 相关模块版本需求(例如: numpy >= 2.1.0)
+# * TODO        : 1.
 # ***************************************************
+
+__all__ = []
 
 # python libraries
 import os
@@ -31,11 +34,11 @@ problem = MyProblem()
 
 # 种群设置
 Encoding = 'RI'  # 编码方式
-Field = ea.crtfld(Encoding, problem.varTypes, problem.ranges, problem.borders) # 创建区域描述器
+
 population = ea.Population(
     Encoding = "RI",  # 编码方式
-    Field = Field,
-    NIND = 100  # 种群规模
+    Field = ea.crtfld(Encoding, problem.varTypes, problem.ranges, problem.borders), # 创建区域描述器
+    NIND = 100,  # 种群规模
 ) # 实例化种群对象(此时种群还没被初始化，仅仅是完成种群对象的实例化)
 
 # 算法参数设置
@@ -57,8 +60,6 @@ res = ea.optimize(
     saveFlag = True,
 )
 print(res)
-
-
 
 
 
