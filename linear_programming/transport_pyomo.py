@@ -1,21 +1,22 @@
 # -*- coding: utf-8 -*-
 
-
 # ***************************************************
-# * File        : lp_transportation.py
+# * File        : transport_pyomo.py
 # * Author      : Zhefeng Wang
 # * Email       : wangzhefengr@163.com
-# * Date        : 2023-04-13
-# * Version     : 0.1.041306
+# * Date        : 2024-10-10
+# * Version     : 0.1.101017
 # * Description : pyomo 实现运输问题
 # * Link        : link
 # * Requirement : 相关模块版本需求(例如: numpy >= 2.1.0)
 # ***************************************************
 
-
 # python libraries
 import os
 import sys
+ROOT = os.getcwd()
+if str(ROOT) not in sys.path:
+    sys.path.append(str(ROOT))
 
 from pyomo.environ import (
     ConcreteModel,
@@ -25,7 +26,6 @@ from pyomo.environ import (
     Objective,
     minimize,
 )
-
 
 # global variable
 LOGGING_LABEL = __file__.split('/')[-1][:-3]

@@ -30,7 +30,7 @@ LOGGING_LABEL = __file__.split('/')[-1][:-3]
 # 两种商品
 # ------------------------------ 
 commodities = ["Pencils", "Pens"]
-
+print(f"commodities:\n {commodities}")
 # ------------------------------
 # 两个产地、三个目的地
 # ------------------------------ 
@@ -41,6 +41,7 @@ nodes = [
     "New York",
     "Seattle",
 ]
+print(f"nodes:\n {nodes}")
 
 # ------------------------------
 # 网络中每条弧的容量(multidict)
@@ -53,8 +54,8 @@ arcs, capacity = grb.multidict({
     ("Denver", "New York"): 120,
     ("Denver", "Seattle"): 120,
 })
-# print(arcs)
-# print(capacity)
+print(f"arcs:\n {arcs}")
+print(f"capacity:\n {capacity}")
 
 # ------------------------------
 # 商品在不同弧上的运输成本(tupledict)
@@ -73,6 +74,7 @@ cost = {
     ("Pens", "Denver", "New York"): 70,
     ("Pens", "Denver", "Seattle"): 30,
 }
+print(f"cost:\n {cost}")
 
 # ------------------------------
 # 商品在不同节点的流入量、流出量（需求量），
@@ -90,6 +92,7 @@ inflow = {
     ("Pens", "New York"): -30,
     ("Pens", "Seattle"): -30,
 }
+print(f"inflow:\n {inflow}")
 
 # ------------------------------
 # 创建模型
@@ -100,22 +103,26 @@ m = grb.Model("netflow")
 # 创建变量(tupledict) 
 # ------------------------------
 flow = m.addVars(commodities, arcs, obj = cost, name = "flow")
-# print(flow)
+print(f"flow:\n {flow}\n")
 
 # ------------------------------
 # 添加约束
 # ------------------------------ 
-# 添加容量约束
-# capacity[i, j] 表示 i->j 的弧的容量，i 是产地，j 是目的地
+# 添加容量约束，capacity[i, j] 表示 i->j 的弧的容量，i 是产地，j 是目的地
 m.addConstrs(
-    (flow.sum("*", i, j) <= capacity[i, j] for i, j in arcs), 
-    "cap"
+    (
+        flow.sum("*", i, j) <= capacity[i, j] 
+        for i, j in arcs
+    ), 
+    name = "cap"
 )
-
 # 添加节点流入=流出的约束
 m.addConstrs(
-    (flow.sum(h, "*", j) + inflow[h, j] == flow.sum(h, j, "*") for h in commodities for j in nodes),
-    "node"
+    (
+        flow.sum(h, "*", j) + inflow[h, j] == flow.sum(h, j, "*") 
+        for h in commodities for j in nodes
+    ), 
+    name = "node"
 )
 
 # ------------------------------
@@ -133,6 +140,7 @@ if m.status == grb.GRB.Status.OPTIMAL:
         for i, j in arcs:
             if solution[h, i, j] > 0:
                 print(f"{i} -> {j}: {solution[h, i, j]}")
+
 
 
 
