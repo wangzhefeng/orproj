@@ -12,13 +12,9 @@
 # * Requirement : 相关模块版本需求(例如: numpy >= 2.1.0)
 # ***************************************************
 
-
 # python libraries
-import os
-import sys
 import numpy as np
 import geatpy as ea
-
 
 # global variable
 LOGGING_LABEL = __file__.split('/')[-1][:-3]

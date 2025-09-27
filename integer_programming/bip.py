@@ -20,7 +20,6 @@
 #        x, y, z binary
 
 # python libraries
-import os
 import sys
 from pathlib import Path
 ROOT = str(Path.cwd())

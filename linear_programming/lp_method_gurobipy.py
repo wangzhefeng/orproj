@@ -15,7 +15,6 @@
 # show which value gives the shortest solve time.
 
 # python libraries
-import os
 import sys
 from pathlib import Path
 ROOT = str(Path.cwd())
