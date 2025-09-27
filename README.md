@@ -22,7 +22,19 @@
 
 ## 线性规划
 
+* 线性规划(Linear Programming, LP)
+    - 单纯形法(simplex method)
+    - 内点法(interior point)
+    - 列生成法()
+
 ## 整数规划、混合整数规划
+
+* 整数规划(Integer Programming, IP)
+    - 整数线性规划(Integer Linear Programming, ILP)
+* 0-1 整数规划(Binary Integer Programming, BIP)
+    - 0-1 整数线性规划(Binary Integer Linear Programming, BILP)
+* 混合整数规划(Mix Integer Programming, MIP)
+    - 混合整数线性规划(Mix Integer Linear Programming, MILP)
 
 ## 多目标规划
 
@@ -34,7 +46,6 @@
 * 带约束非线性规划
 
 ## 路径规划
-
 
 <!-- --------------------------- -->
 # 数学规划求解算法
@@ -94,5 +105,5 @@
 
 # 参考资料
 
+* [PathPlanning](https://github.com/zhm-real/PathPlanning)
 * [路径规划五种算法简述及对比](https://zhuanlan.zhihu.com/p/124232080)
-
