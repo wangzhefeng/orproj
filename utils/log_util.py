@@ -21,7 +21,7 @@ ROOT_PATH = Path.cwd()
 # 日志路径
 LOG_DIR = Path(f"{ROOT_PATH}/logs/{os.environ.get('LOG_NAME')}")
 LOG_DIR.mkdir(parents=True, exist_ok=True)
-log_path = LOG_DIR.joinpath("service")
+LOG_PATH = LOG_DIR.joinpath("service")
 
 # 日志级别，默认为INFO
 LOG_LEVEL = os.environ.get("SERVICE_LOG_LEVEL", "INFO")
@@ -42,7 +42,7 @@ stream_handler.setFormatter(default_formatter)
 # ------------------------------
 # 按天轮转的文件日志处理器
 time_rotating_file_handler = handlers.TimedRotatingFileHandler(
-    filename=log_path, 
+    filename=LOG_PATH, 
     when="MIDNIGHT", 
     interval=1, 
     backupCount=10,

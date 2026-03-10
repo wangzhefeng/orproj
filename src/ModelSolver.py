@@ -2,12 +2,12 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional
 
+from utils.log_util import logger
+
 
 # =========================
 # 通用抽象（不依赖具体求解器）
 # =========================
-
-
 @dataclass
 class Variable:
     name: str
@@ -60,8 +60,6 @@ class SolveResult:
 # =========================
 # 策略模式：统一接口
 # =========================
-
-
 class SolverStrategy(ABC):
     @abstractmethod
     def solve(self, model: OptimizationModel, config: SolverConfig) -> SolveResult:
@@ -76,8 +74,6 @@ class SolverStrategy(ABC):
 # =========================
 # 具体策略：不同求解器实现
 # =========================
-
-
 class GurobiStrategy(SolverStrategy):
     @property
     def name(self) -> str:
@@ -90,11 +86,8 @@ class GurobiStrategy(SolverStrategy):
         # 3. 添加变量、约束和目标函数
         # 4. 调用 optimize()
         # 5. 把底层结果映射为统一的 SolveResult
-        print(f"[{self.name}] build model: {model.name}")
-        print(
-            f"[{self.name}] set params: "
-            f"time_limit={config.time_limit_sec}, gap={config.mip_gap}"
-        )
+        logger.info(f"[{self.name}] build model: {model.name}")
+        logger.info(f"[{self.name}] set params: \ntime_limit={config.time_limit_sec}, gap={config.mip_gap}")
 
         return SolveResult(
             status="OPTIMAL",
@@ -112,8 +105,8 @@ class CplexStrategy(SolverStrategy):
 
     def solve(self, model: OptimizationModel, config: SolverConfig) -> SolveResult:
         # 这里的职责与 GurobiStrategy 相同，只是底层 API 和参数映射不同。
-        print(f"[{self.name}] build model: {model.name}")
-        print(f"[{self.name}] set params: threads={config.threads}")
+        logger.info(f"[{self.name}] build model: {model.name}")
+        logger.info(f"[{self.name}] set params: threads={config.threads}")
 
         return SolveResult(
             status="OPTIMAL",
@@ -131,8 +124,8 @@ class ScipStrategy(SolverStrategy):
 
     def solve(self, model: OptimizationModel, config: SolverConfig) -> SolveResult:
         # 这里演示 backend_params 之类的 solver 特有参数透传能力。
-        print(f"[{self.name}] build model: {model.name}")
-        print(f"[{self.name}] backend params: {config.backend_params}")
+        logger.info(f"[{self.name}] build model: {model.name}")
+        logger.info(f"[{self.name}] backend params: {config.backend_params}")
 
         return SolveResult(
             status="FEASIBLE",
@@ -146,8 +139,6 @@ class ScipStrategy(SolverStrategy):
 # =========================
 # 工厂模式：根据配置创建策略
 # =========================
-
-
 class SolverFactory:
     _registry = {
         "gurobi": GurobiStrategy,
@@ -166,8 +157,6 @@ class SolverFactory:
 # =========================
 # 统一入口：业务层调用
 # =========================
-
-
 class SolverEngine:
     def __init__(self, strategy: SolverStrategy):
         self.strategy = strategy
@@ -177,9 +166,9 @@ class SolverEngine:
 
     def solve(self, model: OptimizationModel, config: SolverConfig) -> SolveResult:
         # 文中的统一入口可继续承载校验、日志、耗时统计和异常包装。
-        print(f"[Engine] use solver = {self.strategy.name}")
+        logger.info(f"[Engine] use solver = {self.strategy.name}")
         result = self.strategy.solve(model, config)
-        print(f"[Engine] status = {result.status}, obj = {result.objective_value}")
+        logger.info(f"[Engine] status = {result.status}, obj = {result.objective_value}")
         return result
 
 
@@ -209,6 +198,8 @@ def build_toy_model() -> OptimizationModel:
     return model
 
 
+
+
 if __name__ == "__main__":
     model = build_toy_model()
 
@@ -227,8 +218,8 @@ if __name__ == "__main__":
     engine = SolverEngine(strategy)
     result = engine.solve(model, config)
 
-    print("\n=== Final Result ===")
-    print("solver :", result.solver_name)
-    print("status :", result.status)
-    print("objective :", result.objective_value)
-    print("vars :", result.variable_values)
+    logger.info("\n=== Final Result ===")
+    logger.info("solver :", result.solver_name)
+    logger.info("status :", result.status)
+    logger.info("objective :", result.objective_value)
+    logger.info("vars :", result.variable_values)
