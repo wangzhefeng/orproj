@@ -220,3 +220,8 @@ strategy = SolverFactory.create(solver_name)
 - 工厂创建逻辑
 - `SolverEngine` 统一入口
 - 一个可直接运行的 toy model 示例
+
+
+## 目录补充
+
+- `nonlinear_programming`：用于存放非线性规划问题，例如包含分式目标或其他非线性约束的模型。

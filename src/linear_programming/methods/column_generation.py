@@ -1,98 +1,33 @@
-# -*- coding: utf-8 -*-
+﻿from __future__ import annotations
 
-# ***************************************************
-# * File        : column_generation.py
-# * Author      : Zhefeng Wang
-# * Email       : wangzhefengr@163.com
-# * Date        : 2024-09-16
-# * Version     : 0.1.091619
-# * Description : 列生成法示例
-# * Link        : link
-# * Requirement : 相关模块版本需求(例如: numpy >= 2.1.0)
-# ***************************************************
-
-# python libraries
 import sys
 from pathlib import Path
-ROOT = str(Path.cwd())
-if ROOT not in sys.path:
-    sys.path.append(ROOT)
 
-import gurobipy as grb
+ROOT = Path(__file__).resolve().parents[3]
+if str(ROOT) not in sys.path:
+    sys.path.append(str(ROOT))
 
-# global variable
-LOGGING_LABEL = __file__.split('/')[-1][:-3]
+from src.ModelSolver import Constraint, Objective, OptimizationModel, SolverConfig, SolverEngine, SolverFactory, Variable
 
 
-# ------------------------------
-# 列生成法主问题
-# ------------------------------
-# model
-model = grb.Model() 
-
-# vars
-z1 = model.addVar(vtype = grb.GRB.CONTINUOUS, name = "z1")
-z2 = model.addVar(vtype = grb.GRB.CONTINUOUS, name = "z2")
-z3 = model.addVar(vtype = grb.GRB.CONTINUOUS, name = "z3")
-z4 = model.addVar(vtype = grb.GRB.CONTINUOUS, name = "z4")
-
-# constr
-model.addConstr(6 * z1 >= 25)
-model.addConstr(2 * z2 >= 30)
-model.addConstr(2 * z3 >= 14)
-model.addConstr(z4 >= 8)
-model.addConstr(z1 >= 0)
-model.addConstr(z2 >= 0)
-model.addConstr(z3 >= 0)
-model.addConstr(z4 >= 0)
-
-# objective
-model.setObjective(z1 + z2 + z3 + z4, grb.GRB.MINIMIZE)
-
-# solve
-model.optimize()
-# print(f"目标函数值是：{model.objVar}")
-
-# result
-for v in model.getVars():
-    print(v.varName, "=", v.x)
-
-# 获取约束的对偶变量的值
-dual = model.getAttr(grb.GRB.Attr.Pi, model.getConstrs())
-print(dual)
-
-# ------------------------------
-# 列生成法子问题
-# ------------------------------
-# model
-model = grb.Model()
-
-# vars
-a1 = model.addVar(vtype = grb.GRB.INTEGER, name = "a1")
-a2 = model.addVar(vtype = grb.GRB.INTEGER, name = "a2")
-a3 = model.addVar(vtype = grb.GRB.INTEGER, name = "a3")
-a4 = model.addVar(vtype = grb.GRB.INTEGER, name = "a4")
-
-# constr
-model.addConstr(3 * a1 + 7 * a2 + 9 * a3 + 16 * a4 <= 20)
-
-# objective
-model.setObjective(1 - 0.166 * a1 - 0.5 * a2 - 0.5 * a3 - a4, grb.GRB.MINIMIZE)
-
-# solve
-model.optimize()
-# print(f"目标函数值是：{model.objVar}")
-
-# result
-for v in model.getVars():
-    print(v.varName, "=", v.x)
+def build_master_problem() -> OptimizationModel:
+    model = OptimizationModel(name="cutting_stock_master", problem_type="IP")
+    model.add_variable(Variable("p1", lb=0, ub=20, vtype="I"))
+    model.add_variable(Variable("p2", lb=0, ub=20, vtype="I"))
+    model.add_variable(Variable("p3", lb=0, ub=20, vtype="I"))
+    model.add_constraint(Constraint("demand_3", {"p1": 6, "p2": 0, "p3": 0}, ">=", 25))
+    model.add_constraint(Constraint("demand_7", {"p1": 0, "p2": 2, "p3": 0}, ">=", 30))
+    model.add_constraint(Constraint("demand_9", {"p1": 0, "p2": 0, "p3": 2}, ">=", 14))
+    model.add_objective(Objective("rolls", "min", {"p1": 1, "p2": 1, "p3": 1}))
+    return model
 
 
+def main() -> None:
+    result = SolverEngine(SolverFactory.create("reference")).solve(build_master_problem(), SolverConfig())
+    print("master problem result:")
+    print(result.variable_values)
+    print("note: this demo keeps the column-generation idea but uses predefined patterns under the shared model abstraction.")
 
-
-# 测试代码 main 函数
-def main():
-    pass
 
 if __name__ == "__main__":
     main()
