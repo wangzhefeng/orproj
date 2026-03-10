@@ -12,11 +12,11 @@
 # ***************************************************
 
 # python libraries
-import os
 import sys
-ROOT = os.getcwd()
-if str(ROOT) not in sys.path:
-    sys.path.append(str(ROOT))
+from pathlib import Path
+ROOT = str(Path.cwd())
+if ROOT not in sys.path:
+    sys.path.append(ROOT)
 
 # 1. 导入所需的库
 from ortools.init.python import init

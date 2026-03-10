@@ -16,7 +16,6 @@
 from scipy.optimize import minimize
 import numpy as np
 
-
 # global variable
 LOGGING_LABEL = __file__.split('/')[-1][:-3]
 
