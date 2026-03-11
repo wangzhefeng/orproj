@@ -177,3 +177,4 @@ $ apt-get install -y -qq glpk-utils
 * [PathPlanning](https://github.com/zhm-real/PathPlanning)
 * [路径规划五种算法简述及对比](https://zhuanlan.zhihu.com/p/124232080)
 * [python运筹优化实践](https://www.zhihu.com/column/c_1060904037507006464)
+* [Computational-intelligence](https://github.com/doFighter/Computational-intelligence)
