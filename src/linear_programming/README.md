@@ -5,7 +5,7 @@ topics: [orproj]
 status: summarized
 ---
 
-﻿# Linear Programming
+# Linear Programming
 
 本目录现在分成两层：
 
@@ -21,58 +21,58 @@ status: summarized
 
 目标函数：
 
-\[
+$$
 \max Z = 40x_1 + 30x_2
-\]
+$$
 
 约束：
 
-\[
+$$
 \begin{aligned}
 x_1 &\le 40 \\
 x_1 + x_2 &\le 80 \\
 2x_1 + x_2 &\le 100 \\
 x_1, x_2 &\ge 0
 \end{aligned}
-\]
+$$
 
 ### `transportation_problem.py`
 对应原 `transport_pyomo.py` 的运输问题。
 
 目标函数：
 
-\[
+$$
 \min Z = 4x_{NE} + 6x_{NW} + 5x_{SE} + 3x_{SW}
-\]
+$$
 
 约束：
 
-\[
+$$
 \begin{aligned}
 x_{NE} + x_{NW} &\le 18 \\
 x_{SE} + x_{SW} &\le 12 \\
 x_{NE} + x_{SE} &= 10 \\
 x_{NW} + x_{SW} &= 20
 \end{aligned}
-\]
+$$
 
 ### `resource_allocation_problem.py`
 对应原 `lp_docplex.py` 中“带上下界的资源分配型 LP”。原脚本随机生成参数，不利于教学复现，这里改成固定参数版本。
 
 目标函数：
 
-\[
+$$
 \min Z = 3x_{11} + 2x_{21} + 4x_{31} + 5x_{12}
-\]
+$$
 
 约束：
 
-\[
+$$
 \begin{aligned}
 2x_{11} + x_{21} + 3x_{31} + 2x_{12} &\le 20 \\
 x_{11} + 2x_{21} + x_{31} + 2x_{12} &\le 18
 \end{aligned}
-\]
+$$
 
 并且各变量带有显式上下界。
 
@@ -81,38 +81,38 @@ x_{11} + 2x_{21} + x_{31} + 2x_{12} &\le 18
 
 目标函数：
 
-\[
+$$
 \max Z = 2x_1 + 3x_2 - 5x_3
-\]
+$$
 
 约束：
 
-\[
+$$
 \begin{aligned}
 x_1 + x_2 + x_3 &= 7 \\
 2x_1 - 5x_2 + x_3 &\ge 10 \\
 x_1 + 3x_2 + x_3 &\le 12 \\
 x_1, x_2, x_3 &\ge 0
 \end{aligned}
-\]
+$$
 
 ### `infeasibility_analysis_problem.py`
 对应原 `lp_gurobipy.py` 的“模型不可行诊断”主题。这里不再依赖外部 `.lp` 文件，而是直接构造一个矛盾约束模型。
 
 目标函数：
 
-\[
+$$
 \min Z = x + y
-\]
+$$
 
 约束：
 
-\[
+$$
 \begin{aligned}
 x + y &\ge 8 \\
 x + y &\le 5
 \end{aligned}
-\]
+$$
 
 该模型必然不可行，用于说明诊断场景。
 

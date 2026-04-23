@@ -1,29 +1,28 @@
 ﻿from __future__ import annotations
 
-import itertools
-import math
-import os
 import sys
-from abc import ABC, abstractmethod
-from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Callable, Dict, Iterable, List, Optional, Tuple
-
 ROOT = str(Path.cwd())
 if ROOT not in sys.path:
     sys.path.append(ROOT)
-
-os.environ.setdefault("LOG_NAME", "model_solver")
+import math
+import itertools
+from abc import ABC, abstractmethod
+from dataclasses import dataclass, field
+from typing import Any, Callable, Dict, Iterable, List, Optional, Tuple
 
 from utils.log_util import logger
 
 
+# ------------------------------
+# 全局变量
+# ------------------------------
 EPSILON = 1e-9
 
 
-# =========================
+# ------------------------------
 # 通用抽象（不依赖具体求解器）
-# =========================
+# ------------------------------
 @dataclass
 class Variable:
     name: str
