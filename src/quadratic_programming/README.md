@@ -1,3 +1,10 @@
+---
+source_type: web
+created_at: 2026-01-01  # default placeholder, actual date unknown
+topics: [orproj]
+status: summarized
+---
+
 # Quadratic Programming
 
 本目录包含标准二次规划示例，统一基于 [`src/ModelSolver.py`](E:/operations_research/orproj/src/ModelSolver.py) 中的线性项与 `quadratic_expr` 进行建模。

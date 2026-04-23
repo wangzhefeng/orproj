@@ -1,3 +1,10 @@
+---
+source_type: web
+created_at: 2026-01-01  # default placeholder, actual date unknown
+topics: [orproj]
+status: summarized
+---
+
 # 多求解器时代的工程设计
 
 基于公众号文章《多求解器时代的工程设计 Gurobi, CPLEX, SCIP 统一调用方案》的整理稿。

@@ -1,3 +1,10 @@
+---
+source_type: web
+created_at: 2026-01-01  # default placeholder, actual date unknown
+topics: [orproj]
+status: summarized
+---
+
 ﻿# Linear Programming
 
 本目录现在分成两层：

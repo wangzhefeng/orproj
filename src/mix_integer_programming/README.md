@@ -1,3 +1,10 @@
+---
+source_type: web
+created_at: 2026-01-01  # default placeholder, actual date unknown
+topics: [orproj]
+status: summarized
+---
+
 ﻿# Mix Integer Programming
 
 本目录用于放置混合整数规划问题。当前示例来自原 `integer_programming` 目录中的 `mip.py`，现已迁移到本目录，并继续通过 [`src/ModelSolver.py`](E:/operations_research/orproj/src/ModelSolver.py) 统一运行。

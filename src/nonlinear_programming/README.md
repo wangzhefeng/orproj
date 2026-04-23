@@ -1,3 +1,10 @@
+---
+source_type: web
+created_at: 2026-01-01  # default placeholder, actual date unknown
+topics: [orproj]
+status: summarized
+---
+
 # Nonlinear Programming
 
 本目录用于存放非线性规划模型。与线性规划、整数规划、二次规划不同，这类问题的目标函数或约束中包含非线性项，例如分式、指数、对数、变量乘积等。

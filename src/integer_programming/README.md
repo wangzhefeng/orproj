@@ -1,3 +1,10 @@
+---
+source_type: web
+created_at: 2026-01-01  # default placeholder, actual date unknown
+topics: [orproj]
+status: summarized
+---
+
 ﻿# Integer Programming
 
 本目录现在只保留纯整数规划中的 0-1 二元决策示例。相关脚本统一通过 [`src/ModelSolver.py`](E:/operations_research/orproj/src/ModelSolver.py) 运行，并沿用原始 `gurobipy` 示例的后端语义。

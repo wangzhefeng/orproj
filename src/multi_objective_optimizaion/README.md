@@ -1,3 +1,10 @@
+---
+source_type: web
+created_at: 2026-01-01  # default placeholder, actual date unknown
+topics: [orproj]
+status: summarized
+---
+
 ﻿# Multi-Objective Optimization
 
 本目录补充了两个多目标优化案例。统一思路是：在 [`src/ModelSolver.py`](E:/operations_research/orproj/src/ModelSolver.py) 中为同一个模型添加多个目标函数，再用加权方式形成可比较的综合目标。

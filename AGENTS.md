@@ -1,4 +1,9 @@
-﻿# AGENTS.md
+---
+source_type: web
+created_at: 2026-01-01  # default placeholder, actual date unknown
+topics: [orproj]
+status: summarized
+---
 
 本文件定义 Codex 在本仓库中的工作约定。作用范围为当前项目根目录及其所有子目录。
 

@@ -1,3 +1,10 @@
+---
+source_type: web
+created_at: 2026-01-01  # default placeholder, actual date unknown
+topics: [orproj]
+status: summarized
+---
+
 <details><summary>目录</summary><p>
 
 - [数学规划模型简介](#数学规划模型简介)
